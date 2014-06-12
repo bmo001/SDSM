@@ -73,37 +73,37 @@ public class Login implements ActionListener{
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u767B\u9646");
-		frame.setBounds(750, 400, 418, 300);
+		frame.setBounds(750, 400, 412, 268);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("\u8BF7\u8F93\u5165\u8D26\u53F7\uFF1A");
 		label.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
-		label.setBounds(68, 49, 87, 32);
+		label.setBounds(67, 37, 87, 32);
 		frame.getContentPane().add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(149, 51, 179, 29);
+		textField.setBounds(148, 39, 179, 29);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		label_1 = new JLabel("\u8BF7\u8F93\u5165\u5BC6\u7801\uFF1A");
 		label_1.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
-		label_1.setBounds(68, 105, 87, 32);
+		label_1.setBounds(67, 93, 87, 32);
 		frame.getContentPane().add(label_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(149, 107, 179, 29);
+		passwordField.setBounds(148, 95, 179, 29);
 		frame.getContentPane().add(passwordField);
 		
 		button = new JButton("\u767B\u9646");
 		button.addActionListener(this);
-		button.setBounds(68, 158, 116, 39);
+		button.setBounds(67, 146, 116, 39);
 		frame.getContentPane().add(button);
 		
 		button_1 = new JButton("\u6CE8\u518C");
 		button_1.addActionListener(this);
-		button_1.setBounds(212, 158, 116, 39);
+		button_1.setBounds(211, 146, 116, 39);
 		frame.getContentPane().add(button_1);
 		condb();
 	}
