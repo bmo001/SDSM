@@ -31,6 +31,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	private String[] type;
 	private int i;
 	private JButton button_2;
+	private String nameString;
+	AddItem addItem;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -108,10 +110,21 @@ public class MainFrame extends JFrame implements ActionListener{
 
 		
 		button = new JButton("\u786E\u8BA4\u66F4\u6539");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sqlQuery.executeUpdate("UPDATE 销售信息 SET 商品类型 ='"+textField_1.getText().toString()+"',商品名称='"+textField_2.getText().toString()+"',销售数量='"+textField_3.getText().toString()+"',商品价格='"+textField_4.getText().toString()+"'where 商品名称='"+nameString+"'");
+			}
+		});
 		button.setBounds(10, 189, 92, 23);
 		frame.getContentPane().add(button);
 		
 		delete = new JButton("\u5220\u9664");
+		delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sqlQuery.executeUpdate("delete from 销售信息 where 商品名称='"+comboBox.getSelectedItem().toString()+"'");
+				setcombobox();
+			}
+		});
 		delete.setEnabled(false);
 		delete.setBounds(115, 189, 62, 23);
 		frame.getContentPane().add(delete);
@@ -139,6 +152,7 @@ public class MainFrame extends JFrame implements ActionListener{
 				allinfo=sqlQuery.getData()[0];
 				textField_1.setText(allinfo[0]);
 				textField_2.setText(allinfo[1]);
+				nameString=allinfo[1];
 				textField_3.setText(allinfo[2]);
 				textField_4.setText(allinfo[3]);
 			}
@@ -149,6 +163,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		
 		button_2 = new JButton("\u6DFB\u52A0");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addItem=new AddItem();
+			}
+		});
 		button_2.setBounds(203, 189, 69, 23);
 		frame.getContentPane().add(button_2);
 		

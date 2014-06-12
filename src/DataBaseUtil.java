@@ -54,8 +54,14 @@ public  boolean executeUpdate(String sql) {//
 			if(statement==null)
 			getConnectionAndStatement();
 			int i=statement.executeUpdate(sql);
-			if(i<=0)return false;
-			else return true;
+			if(i<=0){
+				System.out.print("执行失败");
+				return false;
+			}
+			else {
+				System.out.print("执行成功");
+				return true;
+			}
 			
 		} 
 	 catch (SQLException e) {
