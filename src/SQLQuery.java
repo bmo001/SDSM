@@ -4,33 +4,37 @@ import java.sql.SQLException;
 
 public class SQLQuery extends DataBaseUtil{
 	private String test[][];
+	private int hangshu;
+	private String[][] resultString;
 	public  SQLQuery(){
 	super();
 }
-public String[][] getquery(String Sql,int ...num){
+public int queryReturnY(String Sql,int ...num){
 	ResultSet rs=executeQuery(Sql);
 	try {
 		rs.last();
 		int s; 
 		s = rs.getRow();
 		rs.beforeFirst();
-		String resultString[][]=new String[s][num.length];
+		resultString=new String[num.length][s];
 		int m=0;
 		while(rs.next()){
 			for(int i=0;i<num.length;i++){
-			resultString[m][i]=rs.getString(num[i]);}
+			resultString[i][m]=rs.getString(num[i]);
+			System.out.print(resultString[i][m]+"XÊÇ"+i+"YÊÇ"+m);
+			}
 			m++;
 		}
-		return resultString;
+		return m;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	return test;
+	return -1;
 }
-	
-	
-	
+public String[][] getData(){
+	return resultString;
+}
 	
 	
 	

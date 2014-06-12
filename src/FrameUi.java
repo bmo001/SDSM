@@ -8,9 +8,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
@@ -57,8 +54,6 @@ public class FrameUi implements ActionListener{
 			e.printStackTrace();
 		}
 		initialize();
-		SQLQuery sqlQuery=new SQLQuery();
-		sqlQuery.getquery("SELECT * from 销售信息", 2,3);
 		}
 		
 

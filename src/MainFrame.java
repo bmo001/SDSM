@@ -23,7 +23,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	private JComboBox comboBox1,comboBox;
 	private JButton button,button_1;
 	PreparedStatement pree;
-	private DataBaseUtil dbu;
+	private SQLQuery sqlQuery;
 	private JTextField textField_3;
 
 	public static void main(String[] args) {
@@ -58,6 +58,7 @@ public class MainFrame extends JFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		sqlQuery=new SQLQuery();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -114,21 +115,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		additem();
 	}
 	public void additem(){
-		dbu=new DataBaseUtil();
-		dbu.getConnectionAndStatement();
-		ResultSet rs=dbu.executeQuery("SELECT * from 销售信息 where id in (select min(id)from 销售信息 group by 商品类型)");
-		try {
-			rs.last();
-			int i;
-			i = rs.getRow();
-			rs.beforeFirst();
-			String type[]=new String[i];
-			int m=0;
-			while(rs.next()){
-				type[m]=rs.getString(2);
-				m++;
-			}
-			comboBox1 = new JComboBox(type);
+		
+		String[][] type=new String[100][100];
+		int i=sqlQuery.queryReturnY("SELECT * from 销售信息 where id in (select min(id)from 销售信息 group by 商品类型)", 2);
+		
+			comboBox1 = new JComboBox(type[0]);
 			 comboBox1.addActionListener(this);
 			comboBox1.setBounds(10, 10, 84, 21);
 			frame.getContentPane().add(comboBox1);
@@ -141,13 +132,7 @@ public class MainFrame extends JFrame implements ActionListener{
 			JLabel label = new JLabel("\u5546\u54C1\u7C7B\u578B\uFF1A");
 			label.setBounds(23, 44, 79, 21);
 			frame.getContentPane().add(label);
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		setcombobox();
+//			setcombobox();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -158,30 +143,10 @@ public class MainFrame extends JFrame implements ActionListener{
 
 public void setcombobox(){
 	comboBox.removeAllItems();
+	int num;
 	String typename=comboBox1.getSelectedItem().toString();
-	try {
-		pree=DataBaseUtil.getCon().prepareStatement("select 商品名称 from 销售信息 where 商品类型=?");
-		pree.setString(1, typename);
-		ResultSet rs =pree.executeQuery();
-		rs.last();
-		int i;
-		i = rs.getRow();
-		rs.beforeFirst();
-		String type[]=new String[i];
-		int m=0;
-		while(rs.next()){
-			type[m]=rs.getString(1);
-			m++;
-		}
-		//comboBox=new JComboBox(type);
-		for(i=0;i<m;i++){
-			comboBox.addItem(type[i]);
-		}
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	
+//	num=sqlQuery.("SELECT 商品名称 FROM 销售信息 WHERE 商品类型='"+typename+"'",1);
+//	
 }
 }
 	
