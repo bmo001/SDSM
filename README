@@ -1,1 +1,9 @@
-asdsad
+这是一个小型数据管理系统实训的demo。
+Src包里面每个类的作用：
+AddItem.java：添加销售信息
+DataBaseUtil.java：数据库连接实现类,数据库账户和密码以及库名需要自己修改
+FrameUi.java：主界面
+Login.java：登录界面代码
+MainFrame.java：商品销售信息的增删改查
+Register.java：注册页面
+ SQLQuery.java：解析ResultSet数据转换成数组形式
