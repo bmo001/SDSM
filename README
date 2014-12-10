@@ -6,4 +6,4 @@ FrameUi.java：主界面
 Login.java：登录界面代码
 MainFrame.java：商品销售信息的增删改查
 Register.java：注册页面
- SQLQuery.java：解析ResultSet数据转换成数组形式
+SQLQuery.java：解析ResultSet数据转换成数组形式
